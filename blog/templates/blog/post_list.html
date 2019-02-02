@@ -1,26 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Let go travel</title>
-  </head>
-  <body>
-    <div class="container">
-      <div class="row">
-        <h1><a href="#">Lets Go Travel</a></h1>
-      </div>
+{% extends 'blog/base.html' %}
 
-      <div class="row">
-        <p>published: 14.06.2014, 12:14</p>
-        <h2><a href="#">My first post</a></h2>
-        <p>This is my first post. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-      </div>
-
-      <div class="row">
-        <p>published: 14.06.2014, 12:14</p>
-        <h2><a href="">My second post</a></h2>
-        <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut f.</p>
-      </div>
-    </div>
-  </body>
-</html>
+      {% block  content %}
+      {% for post in posts %}
+        <div class="row">
+          <p>published: {{ post.published_date}}</p>
+          <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+          <p>{{ post.text|linebreaksbr }}</p>
+        </div>
+      {% endfor %}
+      {% endblock %}
